@@ -16,7 +16,7 @@ dots = lines %>%
   select(x, y)
 
 # Static Plot
-ggplot() +
+plot_01 = ggplot() +
   # Lines
   geom_segment(data = lines,
                aes(x = x, y = y, 
