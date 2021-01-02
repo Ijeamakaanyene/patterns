@@ -555,47 +555,6 @@ ggplot() +
 .footer-paths[**PATHS: PATTERN 11**]
 ---
 .pull-left[
-```{r, plot_pattern_12, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
-rings = tibble(
-  x = 1,
-  xend = 3,
-  y = c(2, 4),
-  yend = c(2, 4))
-
-segment = tibble(
-  x = c(1, 3),
-  xend = c(1, 3),
-  y = 1,
-  yend = 5)
-
-ggplot() +
-  geom_segment(data = rings,
-               aes(x = x, xend = xend,
-                   y = y, yend = yend),
-               color = "white") +
-  geom_segment(data = segment,
-               aes(x = x, xend = xend,
-                   y = y, yend = yend),
-               color = "white") +
-  geom_point(aes(x = 3, y = 1),
-             color = "white",
-             size = 12) +
-  scale_y_continuous(limits = c(1, 5)) +
-  scale_x_continuous(limits = c(1, 5)) +
-  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
-  coord_polar() +
-  apply_pattern_theme(bg_hex = "#2a534a",
-                      caption_hex = "white")
-```
-]
-
-.pull-right[
-![](`r knitr::fig_chunk("plot_pattern_12", "png")`)
-]
-
-.footer-paths[**PATHS: PATTERN 12**]
----
-.pull-left[
 ```{r, plot_pattern_26, fig.show='hide'}
 ggplot() +
   geom_abline(intercept = seq(-0.8, 0.9, by = .05),
@@ -663,6 +622,39 @@ ggplot() +
 ]
 
 .footer-paths[**PATHS: PATTERN 30**]
+---
+.pull-left[
+```{r, plot_pattern_32, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
+num_lines = 1000
+r_vals = seq(0.5, 1, by = .1)
+circles_list = list()
+
+for(i in 1:length(r_vals)){
+  r = r_vals[i]
+  circles_list[[i]] = tibble(
+    len = seq(0, 2*pi, length.out = num_lines),
+    x = r*sin(len),
+    y = r*cos(len),
+    size = r)
+}
+
+final_circle = bind_rows(circles_list)
+
+ggplot() +
+  geom_point(data = final_circle,
+             aes(x = x, y = y, size = size),
+             color = "white") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("#2a534a", "white")
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot_pattern_32", "png")`)
+]
+
+.footer-paths[**PATHS: PATTERN 32**]
 ---
 class: inverse-illusion, right, bottom
 
@@ -832,61 +824,8 @@ class: inverse-illusion, right, bottom
 ]
 ]
 ---
-```{r include = FALSE}
-circle = tibble(
-  len = seq(0, 2*pi, length.out = 60),
-  x = sin(len), 
-  y = cos(len), 
-  type = 1:60)
-```
 .pull-left[
-```{r, plot_pattern_20, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
-top = circle %>%
-  filter(y > 0) %>%
-  mutate(x = x, y = y, xend = x) %>%
-  select(x, y, xend, type)
-
-bottom = circle %>%
-  filter(y < 0) %>%
-  mutate(yend = y) %>%
-  select(yend, type)
-
-crosswalk = tibble(
-  top = c(seq(1, 15), seq(46, 60)),
-  bottom = c(seq(30, 16), seq(45, 31)))
-
-total_lines = left_join(crosswalk, top, 
-                        by = c("top" = "type")) %>%
-  left_join(., bottom, by = c("bottom" = "type")) %>%
-  mutate(size = c(seq(2, 0.1, length.out = 15),
-                  seq(0.1, 2, length.out = 15)))
-  
-ggplot() +
-  geom_segment(data = total_lines,
-               aes(x = x, y = y,
-                   xend = xend, yend = yend,
-                   size = size, color = size),
-               lineend = "round") +
-  scale_colour_gradient(low = "white", 
-                        high = "#555555") +
-  scale_x_continuous(limits = c(-1.5, 1.5)) +
-  scale_y_continuous(limits = c(-1.5, 1.5)) +
-  scale_size_area(max_size = 2) +
-  coord_fixed() +
-  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
-  apply_pattern_theme(bg_hex = "white",
-                      caption_hex = "black")
-```
-]
-
-.pull-right[
-![](`r knitr::fig_chunk("plot_pattern_20", "png")`)
-]
-
-.footer-illusion[**ILLUSION: PATTERN 20**]
----
-.pull-left[
-```{r, plot_pattern_21, fig.show='hide'}
+```{r, plot_pattern_21, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
 circle = tibble(
   len = seq(0, 2*pi, length.out = 61),
   x = sin(len),
@@ -937,7 +876,7 @@ circle = tibble(
 ```
 
 .pull-left[
-```{r, plot_pattern_22, fig.show='hide'}
+```{r, plot_pattern_22, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
 circle_top = circle %>%
   filter(y >= 0)
 
@@ -990,7 +929,7 @@ circle = tibble(
 ```
 
 .pull-left[
-```{r, plot_pattern_24, fig.show='hide', fig.width=5.7, fig.height=5, fig.align='center'}
+```{r, plot_pattern_24, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
 vertical_up = filter(circle, y > 0) %>%
   mutate(yend = 1.25, xend = x)
 
@@ -1036,6 +975,82 @@ ggplot() +
 
 .footer-illusion[**ILLUSION: PATTERN 24**]
 ---
+.pull-left[
+```{r, plot_pattern_31, fig.show='hide', dpi = 300, fig.align='center', out.width= "100%"}
+num_lines = 4000
+r_vals = seq(0.5, 1.5, by = .01)
+circles_list = list()
+
+for(i in 1:length(r_vals)){
+  r = r_vals[i]
+  circle = tibble(
+    len = seq(0, 2*pi, length.out = num_lines),
+    x = r*sin(len),
+    y = r*cos(len))
+
+  circles_list[[i]] = circle[sample(1:num_lines,
+                                  num_lines/i,
+                                  replace = FALSE),]
+}
+
+final_circle = bind_rows(circles_list)
+
+ggplot() +
+  geom_point(data = final_circle,
+             aes(x = x, y = y),
+             color = "#e4cdc3",
+             size = 0.1,
+             alpha = 0.5) +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("black", "white")
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot_pattern_31", "png")`)
+]
+
+.footer-illusion[**ILLUSION: PATTERN 31**]
+---
+.pull-left[
+```{r, plot_pattern_33, fig.show='hide', dpi=300, fig.align='center', out.width= "100%"}
+num_lines = 100
+r = 1
+
+circle = tibble(
+  len = seq(0, 2*pi, length.out = num_lines),
+  x = r*sin(len),
+  y = r*cos(len),
+  type = 1:100)
+
+circle_test = circle[sample(1:100, 80),]
+
+ggplot() +
+  geom_path(data = circle_test,
+            aes(x = x, y = y,
+                color = type), 
+            size = 0.8,
+            alpha = 0.8) +
+  geom_path(data = circle_test,
+            aes(x = x, y = y,
+                color = type),
+            size = 0.5) +
+  scale_colour_gradient(low = "#f7f7f7", 
+                        high = "#6b7f8c") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("black", "white")
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot_pattern_33", "png")`)
+]
+
+.footer-illusion[**ILLUSION: PATTERN 33**]
+---
+
 class: inverse-waves, right, bottom
 
 .pull-right[
@@ -1406,6 +1421,43 @@ ggplot() +
 ]
 
 .footer-areas[**AREA: PATTERN 29**]
+---
+.pull-left[
+```{r, plot_pattern_34, fig.show='hide', fig.align='center', out.width= "100%", dpi = 300}
+num_lines = 400
+
+circle = tibble(
+  len = seq(0, 2*pi, length.out = num_lines),
+  x = sin(len),
+  y = cos(len))
+  
+triangle_left = circle %>%
+  mutate(xend = x, 
+         x = -1,
+         yend = y,
+         y = 0)
+
+ggplot() +
+  geom_polygon(data = circle,
+            aes(x = x, y = y),
+            fill = "#ab3a3a") +
+  geom_segment(data = triangle_left,
+               aes(x = x, xend = xend,
+                   y = y, yend = yend),
+               color = "white",
+               size = 0.3,
+               lineend = "round") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("white", "black")
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot_pattern_34", "png")`)
+]
+
+.footer-areas[**AREA: PATTERN 34**]
 ---
 class: inverse-intro, left, middle
 
