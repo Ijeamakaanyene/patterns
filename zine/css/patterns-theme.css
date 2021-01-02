@@ -1,0 +1,147 @@
+/* Color Variables */ 
+:root {
+--RaisinBlack: #252323;
+--White: #FFFFFF;
+}
+
+/* Title Slide */
+title-slide {
+  background-color: #303b5b;
+}
+
+.inverse-intro {
+  background: linear-gradient(90deg, #FFFFFF 50%, #252323 50%);
+  text-shadow: none;
+}
+
+/* Inverse Spokes */
+
+.inverse-spokes {
+  background: linear-gradient(90deg, #FFFFFF 50%, #997f6a 50%);
+  text-shadow: none;
+}
+
+.footer-spokes {
+    background: linear-gradient(110deg, #997f6a 50%, #252323 50%);
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+/* Inverse Paths */
+.inverse-paths {
+  background: linear-gradient(90deg, #FFFFFF 50%, #78291a 50%);
+  text-shadow: none;
+}
+
+.footer-paths {
+    background: linear-gradient(110deg, #78291a 50%, #252323 50%);
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+/* Inverse Illusion */
+.inverse-illusion {
+  background: linear-gradient(90deg, #FFFFFF 50%, #454545 50%);
+  text-shadow: none;
+}
+
+.footer-illusion {
+    background: linear-gradient(110deg, #454545 50%, #252323 50%);
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+/* Inverse Waves */
+.inverse-waves {
+  background: linear-gradient(90deg, #FFFFFF 50%, #424632 50%);
+  text-shadow: none;
+}
+
+.footer-waves {
+    background: linear-gradient(110deg, #424632 50%, #252323 50%);
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+/* Inverse Areas */
+.inverse-areas {
+  background: linear-gradient(90deg, #FFFFFF 50%, #031634 50%);
+  text-shadow: none;
+}
+
+.footer-areas {
+    background: linear-gradient(110deg, #031634 50%, #252323 50%);
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+
+/* Color Variables for Text */
+.my-black{ color: var(--RaisinBlack);}
+.my-white{ color: var(--White);}
+
+/* Code Text */
+.remark-code{
+  font-size: 75%;
+}
+
+/* Footers */
+.footer {
+    background: linear-gradient(110deg, #485870 50%, #c07b52 50%);
+    /*background-color: #252323;
+    border-width: 0.70em;
+    border-style:solid;
+    border-color: #252323; 
+    opacity:0.25;*/
+    width: 40%;
+    color: white;
+    position: absolute;
+    padding: .75em;
+    bottom: 2em;
+    right: .75em;
+    font-size: 90%;
+    line-height: 1.3em;
+}
+
+
+
+
+
+/* Hiding Slide Number */
+.remark-slide-number { 
+  display: none; 
+}
+
+
+
+
