@@ -1,5 +1,5 @@
 ---
-title: "radial patterns in ggplot"
+title: "radial patterns in ggplot2"
 output:
   xaringan::moon_reader:
     seal: false
