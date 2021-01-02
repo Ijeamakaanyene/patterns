@@ -549,48 +549,6 @@ ggplot() +
 .pull-left[
 
 ```r
-rings = tibble(
-  x = 1,
-  xend = 3,
-  y = c(2, 4),
-  yend = c(2, 4))
-
-segment = tibble(
-  x = c(1, 3),
-  xend = c(1, 3),
-  y = 1,
-  yend = 5)
-
-ggplot() +
-  geom_segment(data = rings,
-               aes(x = x, xend = xend,
-                   y = y, yend = yend),
-               color = "white") +
-  geom_segment(data = segment,
-               aes(x = x, xend = xend,
-                   y = y, yend = yend),
-               color = "white") +
-  geom_point(aes(x = 3, y = 1),
-             color = "white",
-             size = 12) +
-  scale_y_continuous(limits = c(1, 5)) +
-  scale_x_continuous(limits = c(1, 5)) +
-  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
-  coord_polar() +
-  apply_pattern_theme(bg_hex = "#2a534a",
-                      caption_hex = "white")
-```
-]
-
-.pull-right[
-![](zine_radial_patterns_files/figure-html/plot_pattern_12-1.png)
-]
-
-.footer-paths[**PATHS: PATTERN 12**]
----
-.pull-left[
-
-```r
 ggplot() +
   geom_abline(intercept = seq(-0.8, 0.9, by = .05),
                   slope = -1,
@@ -658,6 +616,40 @@ ggplot() +
 ]
 
 .footer-paths[**PATHS: PATTERN 30**]
+---
+.pull-left[
+
+```r
+num_lines = 1000
+r_vals = seq(0.5, 1, by = .1)
+circles_list = list()
+
+for(i in 1:length(r_vals)){
+  r = r_vals[i]
+  circles_list[[i]] = tibble(
+    len = seq(0, 2*pi, length.out = num_lines),
+    x = r*sin(len),
+    y = r*cos(len),
+    size = r)
+}
+
+final_circle = bind_rows(circles_list)
+
+ggplot() +
+  geom_point(data = final_circle,
+             aes(x = x, y = y, size = size),
+             color = "white") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("#2a534a", "white")
+```
+]
+
+.pull-right[
+![](zine_radial_patterns_files/figure-html/plot_pattern_32-1.png)
+]
+
+.footer-paths[**PATHS: PATTERN 32**]
 ---
 class: inverse-illusion, right, bottom
 
@@ -830,54 +822,6 @@ class: inverse-illusion, right, bottom
 ]
 ]
 ---
-
-.pull-left[
-
-```r
-top = circle %&gt;%
-  filter(y &gt; 0) %&gt;%
-  mutate(x = x, y = y, xend = x) %&gt;%
-  select(x, y, xend, type)
-
-bottom = circle %&gt;%
-  filter(y &lt; 0) %&gt;%
-  mutate(yend = y) %&gt;%
-  select(yend, type)
-
-crosswalk = tibble(
-  top = c(seq(1, 15), seq(46, 60)),
-  bottom = c(seq(30, 16), seq(45, 31)))
-
-total_lines = left_join(crosswalk, top, 
-                        by = c("top" = "type")) %&gt;%
-  left_join(., bottom, by = c("bottom" = "type")) %&gt;%
-  mutate(size = c(seq(2, 0.1, length.out = 15),
-                  seq(0.1, 2, length.out = 15)))
-  
-ggplot() +
-  geom_segment(data = total_lines,
-               aes(x = x, y = y,
-                   xend = xend, yend = yend,
-                   size = size, color = size),
-               lineend = "round") +
-  scale_colour_gradient(low = "white", 
-                        high = "#555555") +
-  scale_x_continuous(limits = c(-1.5, 1.5)) +
-  scale_y_continuous(limits = c(-1.5, 1.5)) +
-  scale_size_area(max_size = 2) +
-  coord_fixed() +
-  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
-  apply_pattern_theme(bg_hex = "white",
-                      caption_hex = "black")
-```
-]
-
-.pull-right[
-![](zine_radial_patterns_files/figure-html/plot_pattern_20-1.png)
-]
-
-.footer-illusion[**ILLUSION: PATTERN 20**]
----
 .pull-left[
 
 ```r
@@ -1020,6 +964,84 @@ ggplot() +
 
 .footer-illusion[**ILLUSION: PATTERN 24**]
 ---
+.pull-left[
+
+```r
+num_lines = 4000
+r_vals = seq(0.5, 1.5, by = .01)
+circles_list = list()
+
+for(i in 1:length(r_vals)){
+  r = r_vals[i]
+  circle = tibble(
+    len = seq(0, 2*pi, length.out = num_lines),
+    x = r*sin(len),
+    y = r*cos(len))
+
+  circles_list[[i]] = circle[sample(1:num_lines,
+                                  num_lines/i,
+                                  replace = FALSE),]
+}
+
+final_circle = bind_rows(circles_list)
+
+ggplot() +
+  geom_point(data = final_circle,
+             aes(x = x, y = y),
+             color = "#e4cdc3",
+             size = 0.1,
+             alpha = 0.5) +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("black", "white")
+```
+]
+
+.pull-right[
+![](zine_radial_patterns_files/figure-html/plot_pattern_31-1.png)
+]
+
+.footer-illusion[**ILLUSION: PATTERN 31**]
+---
+.pull-left[
+
+```r
+num_lines = 100
+r = 1
+
+circle = tibble(
+  len = seq(0, 2*pi, length.out = num_lines),
+  x = r*sin(len),
+  y = r*cos(len),
+  type = 1:100)
+
+circle_test = circle[sample(1:100, 80),]
+
+ggplot() +
+  geom_path(data = circle_test,
+            aes(x = x, y = y,
+                color = type), 
+            size = 0.8,
+            alpha = 0.8) +
+  geom_path(data = circle_test,
+            aes(x = x, y = y,
+                color = type),
+            size = 0.5) +
+  scale_colour_gradient(low = "#f7f7f7", 
+                        high = "#6b7f8c") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("black", "white")
+```
+]
+
+.pull-right[
+![](zine_radial_patterns_files/figure-html/plot_pattern_33-1.png)
+]
+
+.footer-illusion[**ILLUSION: PATTERN 33**]
+---
+
 class: inverse-waves, right, bottom
 
 .pull-right[
@@ -1403,6 +1425,44 @@ ggplot() +
 ]
 
 .footer-areas[**AREA: PATTERN 29**]
+---
+.pull-left[
+
+```r
+num_lines = 400
+
+circle = tibble(
+  len = seq(0, 2*pi, length.out = num_lines),
+  x = sin(len),
+  y = cos(len))
+  
+triangle_left = circle %&gt;%
+  mutate(xend = x, 
+         x = -1,
+         yend = y,
+         y = 0)
+
+ggplot() +
+  geom_polygon(data = circle,
+            aes(x = x, y = y),
+            fill = "#ab3a3a") +
+  geom_segment(data = triangle_left,
+               aes(x = x, xend = xend,
+                   y = y, yend = yend),
+               color = "white",
+               size = 0.3,
+               lineend = "round") +
+  coord_fixed() +
+  labs(caption = "Ijeamaka Anyene | @ijeamaka_a") +
+  apply_pattern_theme("white", "black")
+```
+]
+
+.pull-right[
+![](zine_radial_patterns_files/figure-html/plot_pattern_34-1.png)
+]
+
+.footer-areas[**AREA: PATTERN 34**]
 ---
 class: inverse-intro, left, middle
 
