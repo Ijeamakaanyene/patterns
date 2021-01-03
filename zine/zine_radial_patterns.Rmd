@@ -29,11 +29,9 @@ library(ggforce)
 extrafont::loadfonts()
 ```
 
-```{r, include = FALSE}
+
+```{r, share-again, echo = FALSE}
 xaringanExtra::use_share_again()
-xaringanExtra::style_share_again(
-  share_buttons = c("twitter")
-)
 ```
 
 ```{r, include = FALSE}
