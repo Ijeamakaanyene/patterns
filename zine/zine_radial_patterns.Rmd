@@ -30,6 +30,13 @@ extrafont::loadfonts()
 ```
 
 ```{r, include = FALSE}
+xaringanExtra::use_share_again()
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter")
+)
+```
+
+```{r, include = FALSE}
 apply_pattern_theme = function(bg_hex, caption_hex){
   theme(
     plot.background = element_rect(fill = bg_hex),
