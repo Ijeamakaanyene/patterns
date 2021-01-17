@@ -2,6 +2,7 @@
 title: "radial patterns in ggplot2"
 output:
   xaringan::moon_reader:
+    anchor_sections: FALSE
     seal: false
     css:
       - default
